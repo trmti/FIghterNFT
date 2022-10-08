@@ -31,7 +31,6 @@ function WalletConnect() {
       .catch((error) => {
         console.error(error);
       });
-    console.log(connector._accounts);
   };
 
   useEffect(() => {
