@@ -1,20 +1,19 @@
 import WalletConnect from '@walletconnect/client';
 import QRCodeModal from '@walletconnect/qrcode-modal';
 
-// Create a connector
 export const connector = new WalletConnect({
-  bridge: 'https://bridge.walletconnect.org', // Required
+  bridge: 'https://bridge.walletconnect.org',
   qrcodeModal: QRCodeModal,
 });
 
-// Subscribe to connection events
+// こっから下は見なくていい。
+
 connector.on('connect', (error, payload) => {
   if (error) {
     throw error;
   }
   console.log('connected');
 
-  // Get provided accounts and chainId
   const { accounts, chainId } = payload.params[0];
   console.log(accounts, chainId, connector);
 });
@@ -24,7 +23,6 @@ connector.on('session_update', (error, payload) => {
     throw error;
   }
 
-  // Get updated accounts and chainId
   const { accounts, chainId } = payload.params[0];
   console.log(accounts, chainId);
 });
@@ -33,6 +31,4 @@ connector.on('disconnect', (error, payload) => {
   if (error) {
     throw error;
   }
-
-  // Delete connector
 });

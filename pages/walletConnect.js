@@ -5,11 +5,9 @@ import { contract, address } from '/utils/contract';
 function WalletConnect() {
   const [connected, setConnected] = useState(false);
   const onClick = async () => {
-    // Check if connection is already established
-    console.log(connector);
     if (connector.connected) {
+      // もう一度 wallet Connect ボタンが押されたときに一度コネクションを削除する。
       await connector.killSession();
-      // create new session
     }
     connector.createSession();
   };
